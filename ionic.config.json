@@ -1,0 +1,8 @@
+{
+  "name": "chatangular",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "1530b4e5"
+}

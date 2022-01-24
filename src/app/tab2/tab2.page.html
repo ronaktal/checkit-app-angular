@@ -1,0 +1,25 @@
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Pick a Topic</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content [fullscreen]="true">
+    <ion-searchbar
+      [(ngModel)]="filterTerm"
+      (ionInput)="filter($any($event.target).value)"
+      (ionCancel)="cancel()"
+    ></ion-searchbar>
+
+    <ion-list>
+      <ion-list-header> Search Topic </ion-list-header>
+      <ion-item
+        *ngFor="let regular of filterData;let i = index"
+        button="true"
+        (click)="showDetail(regular.id)"
+      >
+        <ion-label>{{regular.name}}</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-content>
