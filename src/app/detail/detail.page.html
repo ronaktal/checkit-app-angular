@@ -1,40 +1,41 @@
+<ion-header collapse="condense">
+  <ion-toolbar>
+    <ion-title size="large">Pick a Topic</ion-title>
+  </ion-toolbar>
+</ion-header>
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Pick a Topic</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content [fullscreen]="true">
-    <ion-card>
-      <ion-card-header>
-        <ion-card-subtitle class="ion-text-center"
-          >Please answer Yes or No using the options below</ion-card-subtitle
-        ><br />
-        <ion-card-title class="ion-text-center">{{phrase}}</ion-card-title>
-      </ion-card-header>
-    </ion-card>
-    <ion-tabs>
-      <ion-tab-bar slot="bottom">
-        <ion-tab-button tab="back">
-          <ion-icon name="arrow-undo-outline"></ion-icon>
-          <ion-label>Back</ion-label>
-        </ion-tab-button>
-
-        <ion-tab-button tab="yes">
-          <ion-icon name="checkmark-circle"></ion-icon>
-          <ion-label>Yes</ion-label>
-        </ion-tab-button>
-
-        <ion-tab-button tab="no">
-          <ion-icon name="close-circle"></ion-icon>
-          <ion-label>No</ion-label>
-        </ion-tab-button>
-
-        <ion-tab-button tab="source">
-          <ion-icon name="information-circle-outline"></ion-icon>
-          <ion-label>Source</ion-label>
-        </ion-tab-button>
-      </ion-tab-bar>
-    </ion-tabs>
-  </ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle class="ion-text-center"
+        >Please answer Yes or No using the options below</ion-card-subtitle
+      ><br />
+      <ion-card-title class="ion-text-center">{{phrase}}</ion-card-title>
+    </ion-card-header>
+  </ion-card>
 </ion-content>
+
+<ion-toolbar>
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="back">
+        <ion-icon name="arrow-undo-outline"></ion-icon>
+        <ion-label>Back</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="yes" (click)="traverse(1,obj)">
+        <ion-icon name="checkmark-circle"></ion-icon>
+        <ion-label>Yes</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="no" (click)="traverse(2,obj)">
+        <ion-icon name="close-circle"></ion-icon>
+        <ion-label>No</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="source">
+        <ion-icon name="information-circle-outline"></ion-icon>
+        <ion-label>Source</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+</ion-toolbar>
