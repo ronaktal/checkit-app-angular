@@ -1,7 +1,11 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button text="Back to list"></ion-back-button>
+      <ion-back-button
+        text="Back to list"
+        icon="list-outline"
+        defaultHref="/"
+      ></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -9,7 +13,7 @@
   <ion-card>
     <ion-card-header>
       <ion-card-subtitle class="ion-text-center"
-        >Please answer Yes or No using the options below</ion-card-subtitle
+        >Please answer Yes or No using the options below.</ion-card-subtitle
       ><br />
       <ion-card-title class="ion-text-center">{{phrase}}</ion-card-title>
     </ion-card-header>
@@ -19,10 +23,10 @@
 <ion-toolbar>
   <ion-tabs>
     <ion-tab-bar slot="bottom">
-      <ion-back-button tab="back">
+      <ion-tab-button tab="back" (click)="back()">
         <ion-icon name="arrow-undo-outline"></ion-icon>
-        <ion-label>Topics</ion-label>
-      </ion-back-button>
+        <ion-label>Back</ion-label>
+      </ion-tab-button>
 
       <ion-tab-button tab="yes" (click)="traverse(1,obj)">
         <ion-icon name="checkmark-circle"></ion-icon>

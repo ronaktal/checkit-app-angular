@@ -11,15 +11,21 @@ import * as content from './content_all.json';
 export class Detailpage {
   phrase: string;
   obj: JSON;
+  backobj: JSON;
+  origobj: JSON;
   depth: number;
   objtraverse: JSON;
   message_toast: string;
   history: number[];
+  topicid: number;
 
   constructor(public toastController: ToastController) {
     var topic_id = localStorage.getItem('topic_id');
-    console.log(JSON.parse(topic_id));
+    this.topicid = parseInt(topic_id);
+
     this.obj = content[topic_id];
+    this.backobj = content[topic_id];
+    this.origobj = content[topic_id];
     this.phrase = Object.keys(this.obj)[0];
     this.depth = 0;
     this.message_toast = 'No more information. Press back or start over.';
@@ -33,7 +39,31 @@ export class Detailpage {
       this.presentToast();
       return;
     }
+
     this.history.push(val);
+    console.log(this.history);
+    objtraverse = objtraverse[Object.keys(objtraverse)[0]];
+
+    if (val == 1) {
+      if (typeof objtraverse['Yes'] !== 'object') {
+        this.phrase = objtraverse['Yes'];
+      } else {
+        this.phrase = Object.keys(objtraverse['Yes'])[0];
+      }
+      this.setObj(objtraverse['Yes']);
+    } else {
+      if (typeof objtraverse['No'] !== 'object') {
+        this.phrase = objtraverse['No'];
+      } else {
+        this.phrase = Object.keys(objtraverse['No'])[0];
+      }
+
+      this.setObj(objtraverse['No']);
+    }
+  }
+
+  traverse_internal_last(val, objtraverse) {
+    // console.log(objtraverse);
 
     objtraverse = objtraverse[Object.keys(objtraverse)[0]];
 
@@ -52,6 +82,23 @@ export class Detailpage {
       }
 
       this.setObj(objtraverse['No']);
+    }
+  }
+
+  traverse_internal(val, objtraverse) {
+    //console.log(objtraverse);
+    objtraverse = objtraverse[Object.keys(objtraverse)[0]];
+
+    if (val == 1) {
+      if (typeof objtraverse['Yes'] !== 'object') {
+      } else {
+      }
+      this.backobj = objtraverse['Yes'];
+    } else {
+      if (typeof objtraverse['No'] !== 'object') {
+      } else {
+      }
+      this.backobj = objtraverse['No'];
     }
   }
 
@@ -75,5 +122,41 @@ export class Detailpage {
     this.message_toast = JSON.parse(localStorage.getItem('source'));
     this.presentToast();
     this.message_toast = 'No more information. Press back or start over.';
+  }
+
+  back() {
+    if (this.history.length == 0) {
+      this.message_toast =
+        'You are at the beginning of this topic. No prior data.';
+      this.presentToast();
+      //reset default message
+      this.message_toast = 'No more information. Press back or start over.';
+    }
+    var i = 0;
+    this.backobj = this.origobj;
+
+    var e = this.history.length - 1;
+    if (e < 0) {
+      e = 0;
+    }
+
+    while (i < e - 1) {
+      //  console.log(i);
+      console.log('internal');
+      this.traverse_internal(this.history[i], this.backobj);
+      i++;
+    }
+    if (e > 0) {
+      console.log('last');
+      this.traverse_internal_last(this.history[i], this.backobj);
+      this.history.pop();
+    } else {
+      //start main again
+      console.log('main');
+
+      this.history.pop();
+      this.setObj(this.origobj);
+      this.phrase = Object.keys(this.backobj)[0];
+    }
   }
 }
