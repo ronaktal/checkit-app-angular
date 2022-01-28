@@ -1,18 +1,12 @@
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Pick a Topic</ion-title>
-    </ion-toolbar>
-  </ion-header>
   <ion-content [fullscreen]="true">
     <ion-searchbar
       [(ngModel)]="filterTerm"
       (ionInput)="filter($any($event.target).value)"
       (ionCancel)="cancel()"
+      placeholder="Search Over 60 Health Topics"
     ></ion-searchbar>
-
     <ion-list>
-      <ion-list-header> Search Topic </ion-list-header>
       <ion-item
         *ngFor="let regular of filterData;let i = index"
         button="true"
@@ -25,35 +19,53 @@
     <br />
     <br />
     <br />
-    <div class="fab-class">
+    <div class="fab-class" *ngIf="filterData.length==0;">
       <ion-grid>
         <ion-row>
+          <ion-col> </ion-col>
           <ion-col
+            ><ion-fab-button
+              class="text-padding-bottom"
+              color="danger"
+              (click)="showDetail_urgent(regularList[13]);"
             >
-          </ion-col>
-          <ion-col
-            ><ion-fab-button class="text-padding-bottom" color="danger" >
-            <ion-icon style="font-size:44px"
-              md="heart"
-              ios="heart"
-            ></ion-icon>
-          </ion-fab-button>
-          <div class="ion-padding-top">&nbsp;&nbsp;&nbsp;&nbsp;CPR</div>
-          </ion-col>
-          <ion-col
-            ><ion-fab-button color="light">
-              <ion-icon src="https://raw.githubusercontent.com/ronaktal/checkitup/19b9ac00c225936e819746b9df1f0ecc78c7839a/719506_dizzy_fever_flu_headache_nausea_icon.svg"
-              style="font-size:44px"></ion-icon>
-            </ion-fab-button>
-            <div class="ion-padding-top">&nbsp;&nbsp;&nbsp;Stroke</div>
-          </ion-col>
-          <ion-col
-            ><ion-fab-button color="light">
               <ion-icon
-                md="caret-back"
-                ios="chevron-back-circle-outline"
+                style="font-size: 44px"
+                md="heart"
+                ios="heart"
               ></ion-icon>
             </ion-fab-button>
+            <div class="ion-padding-top" style="position: relative; left: 22px">
+              CPR
+            </div>
+          </ion-col>
+          <ion-col
+            ><ion-fab-button
+              color="light"
+              (click)="showDetail_urgent(regularList[5]);"
+            >
+              <ion-icon
+                src="https://raw.githubusercontent.com/ronaktal/checkitup/19b9ac00c225936e819746b9df1f0ecc78c7839a/719506_dizzy_fever_flu_headache_nausea_icon.svg"
+                style="font-size: 44px"
+              ></ion-icon>
+            </ion-fab-button>
+            <div class="ion-padding-top" style="position: relative; left: 18px">
+              Stroke
+            </div>
+          </ion-col>
+          <ion-col
+            ><ion-fab-button
+              color="light"
+              (click)="showDetail_urgent(regularList[23]);"
+            >
+              <ion-icon
+                src="https://raw.githubusercontent.com/ronaktal/checkitup/865ebbe5aaa31140352f593c64226b916fab9ca6/311931_cardiac_cardio_heart_pulce_icon.svg"
+                style="font-size: 44px"
+              ></ion-icon>
+            </ion-fab-button>
+            <div class="ion-padding-top" style="position: relative; left: 2px">
+              Chest Pain
+            </div>
           </ion-col>
         </ion-row>
       </ion-grid>
