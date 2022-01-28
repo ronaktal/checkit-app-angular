@@ -370,6 +370,10 @@ export class Tab2Page {
   ];
 
   filter(val) {
+    if (val == '') {
+      this.filterData = [];
+      return;
+    }
     this.filterData = this.regularList.filter((item) => {
       return item.name.toLowerCase().indexOf(val.toLowerCase()) > -1;
     });

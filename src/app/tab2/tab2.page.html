@@ -19,7 +19,7 @@
     <br />
     <br />
     <br />
-    <div class="fab-class" *ngIf="filterData.length==0;">
+    <div class="fab-class" *ngIf="filterData.length==0||filterData.length==63">
       <ion-grid>
         <ion-row>
           <ion-col> </ion-col>
@@ -27,7 +27,7 @@
             ><ion-fab-button
               class="text-padding-bottom"
               color="danger"
-              (click)="showDetail_urgent(regularList[13]);"
+              (click)="showDetail(regularList[13]);"
             >
               <ion-icon
                 style="font-size: 44px"
@@ -42,7 +42,7 @@
           <ion-col
             ><ion-fab-button
               color="light"
-              (click)="showDetail_urgent(regularList[5]);"
+              (click)="showDetail(regularList[5]);"
             >
               <ion-icon
                 src="https://raw.githubusercontent.com/ronaktal/checkitup/19b9ac00c225936e819746b9df1f0ecc78c7839a/719506_dizzy_fever_flu_headache_nausea_icon.svg"
@@ -56,7 +56,7 @@
           <ion-col
             ><ion-fab-button
               color="light"
-              (click)="showDetail_urgent(regularList[23]);"
+              (click)="showDetail(regularList[23]);"
             >
               <ion-icon
                 src="https://raw.githubusercontent.com/ronaktal/checkitup/865ebbe5aaa31140352f593c64226b916fab9ca6/311931_cardiac_cardio_heart_pulce_icon.svg"
@@ -67,6 +67,7 @@
               Chest Pain
             </div>
           </ion-col>
+          <ion-col> </ion-col>
         </ion-row>
       </ion-grid>
     </div>
