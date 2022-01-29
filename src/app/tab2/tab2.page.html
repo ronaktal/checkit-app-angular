@@ -1,6 +1,17 @@
-<ion-content [fullscreen]="true">
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="Browse()" *ngIf="this.browselist==1">
+        <ion-icon name="list-outline"></ion-icon>&nbsp;Browse
+      </ion-button>
+      <ion-button (click)="show_topics()" *ngIf="this.browselist==0">
+        <ion-icon name="grid-outline"></ion-icon>&nbsp;Back
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar> </ion-header
+><ion-content [fullscreen]="true">
   <ion-content [fullscreen]="true">
-    <ion-searchbar
+    <br /><ion-searchbar
       [(ngModel)]="filterTerm"
       (ionInput)="filter($any($event.target).value)"
       (ionCancel)="cancel()"

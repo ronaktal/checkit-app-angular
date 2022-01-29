@@ -12,6 +12,7 @@ export class Tab2Page {
   constructor(private router: Router) {}
 
   filterData = []; //Store filtered data
+  browselist = 1;
   regularList = [
     {
       name: 'Asthma Attack',
@@ -381,6 +382,16 @@ export class Tab2Page {
 
   cancel() {
     this.filterData = [];
+  }
+
+  Browse() {
+    this.filterData = this.regularList;
+    this.browselist = 0;
+  }
+
+  show_topics() {
+    this.filterData = [];
+    this.browselist = 1;
   }
 
   showDetail(reg) {
