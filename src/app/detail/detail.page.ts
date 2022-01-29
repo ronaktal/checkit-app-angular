@@ -32,10 +32,26 @@ export class Detailpage {
     this.history = [];
   }
 
+  updatephrase(new_phrase) {
+    var temp_phrase = new_phrase;
+try{
+    let pattern_yes = /((P|p)ress.*?\'Yes\'.*?\.)/gim;
+    let yes_result = temp_phrase.match(pattern_yes)[0];
+    temp_phrase = temp_phrase.replace(pattern_yes,"");
+    console.log(yes_result);
+  }catch(e){}
+try{
+    let pattern_no = /((P|p)ress.*?\'No\'.*?\.)/gim;
+    let no_result = temp_phrase.match(pattern_no)[0];
+    console.log(no_result);
+  }catch(e){}
+    this.phrase = new_phrase;
+  }
+
   traverse(val, objtraverse) {
     console.log(objtraverse);
     if (typeof objtraverse !== 'object') {
-      this.phrase = objtraverse;
+      this.updatephrase(objtraverse);
       this.presentToast();
       return;
     }
@@ -46,16 +62,16 @@ export class Detailpage {
 
     if (val == 1) {
       if (typeof objtraverse['Yes'] !== 'object') {
-        this.phrase = objtraverse['Yes'];
+        this.updatephrase(objtraverse['Yes']);
       } else {
-        this.phrase = Object.keys(objtraverse['Yes'])[0];
+        this.updatephrase(Object.keys(objtraverse['Yes'])[0]);
       }
       this.setObj(objtraverse['Yes']);
     } else {
       if (typeof objtraverse['No'] !== 'object') {
-        this.phrase = objtraverse['No'];
+        this.updatephrase(objtraverse['No']);
       } else {
-        this.phrase = Object.keys(objtraverse['No'])[0];
+        this.updatephrase(Object.keys(objtraverse['No'])[0]);
       }
 
       this.setObj(objtraverse['No']);
@@ -69,16 +85,16 @@ export class Detailpage {
 
     if (val == 1) {
       if (typeof objtraverse['Yes'] !== 'object') {
-        this.phrase = objtraverse['Yes'];
+        this.updatephrase(objtraverse['Yes']);
       } else {
-        this.phrase = Object.keys(objtraverse['Yes'])[0];
+        this.updatephrase(Object.keys(objtraverse['Yes'])[0]);
       }
       this.setObj(objtraverse['Yes']);
     } else {
       if (typeof objtraverse['No'] !== 'object') {
-        this.phrase = objtraverse['No'];
+        this.updatephrase(objtraverse['No']);
       } else {
-        this.phrase = Object.keys(objtraverse['No'])[0];
+        this.updatephrase(Object.keys(objtraverse['No'])[0]);
       }
 
       this.setObj(objtraverse['No']);
@@ -156,7 +172,7 @@ export class Detailpage {
 
       this.history.pop();
       this.setObj(this.origobj);
-      this.phrase = Object.keys(this.backobj)[0];
+      this.updatephrase(Object.keys(this.backobj)[0]);
     }
   }
 }
