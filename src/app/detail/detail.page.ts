@@ -27,8 +27,8 @@ export class Detailpage {
     this.obj = content[topic_id];
     this.backobj = content[topic_id];
     this.origobj = content[topic_id];
-    this.updatephrase(Object.keys(this.obj)[0]);
     this.question_phrase = '';
+    this.updatephrase(Object.keys(this.obj)[0]);
     this.depth = 0;
     this.message_toast = 'No more information. Press back or start over.';
     this.history = [];
@@ -51,6 +51,7 @@ export class Detailpage {
       console.log(no_result);
       this.question_phrase += no_result;
     } catch (e) {}
+
     this.phrase = temp_phrase;
   }
 
