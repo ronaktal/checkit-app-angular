@@ -10,10 +10,19 @@
   </ion-toolbar>
 </ion-header>
 <ion-content [fullscreen]="true">
-  <ion-card>
+  <ion-card *ngIf="this.question_phrase.length>0">
     <ion-card-header>
       <ion-card-subtitle class="ion-text-center"
         >Please answer Yes or No using the options below.</ion-card-subtitle
+      ><br />
+      <ion-card-title class="ion-text-center"
+        >{{question_phrase}}</ion-card-title
+      >
+    </ion-card-header> </ion-card
+  ><ion-card>
+    <ion-card-header>
+      <ion-card-subtitle class="ion-text-center"
+        >Please see description below.</ion-card-subtitle
       ><br />
       <ion-card-title class="ion-text-center">{{phrase}}</ion-card-title>
     </ion-card-header>

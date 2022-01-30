@@ -16,6 +16,7 @@ export class Detailpage {
   depth: number;
   objtraverse: JSON;
   message_toast: string;
+  question_phrase: string;
   history: number[];
   topicid: number;
 
@@ -26,26 +27,31 @@ export class Detailpage {
     this.obj = content[topic_id];
     this.backobj = content[topic_id];
     this.origobj = content[topic_id];
-    this.phrase = Object.keys(this.obj)[0];
+    this.updatephrase(Object.keys(this.obj)[0]);
+    this.question_phrase = '';
     this.depth = 0;
     this.message_toast = 'No more information. Press back or start over.';
     this.history = [];
   }
 
   updatephrase(new_phrase) {
+    this.question_phrase = '';
     var temp_phrase = new_phrase;
-try{
-    let pattern_yes = /((P|p)ress.*?\'Yes\'.*?\.)/gim;
-    let yes_result = temp_phrase.match(pattern_yes)[0];
-    temp_phrase = temp_phrase.replace(pattern_yes,"");
-    console.log(yes_result);
-  }catch(e){}
-try{
-    let pattern_no = /((P|p)ress.*?\'No\'.*?\.)/gim;
-    let no_result = temp_phrase.match(pattern_no)[0];
-    console.log(no_result);
-  }catch(e){}
-    this.phrase = new_phrase;
+    try {
+      let pattern_yes = /((P|p)ress.*?\'Yes\'.*?\.)/gim;
+      let yes_result = temp_phrase.match(pattern_yes)[0];
+      temp_phrase = temp_phrase.replace(pattern_yes, '');
+      this.question_phrase += yes_result;
+      console.log(yes_result);
+    } catch (e) {}
+    try {
+      let pattern_no = /((P|p)ress.*?\'No\'.*?\.)/gim;
+      let no_result = temp_phrase.match(pattern_no)[0];
+      temp_phrase = temp_phrase.replace(pattern_no, '');
+      console.log(no_result);
+      this.question_phrase += no_result;
+    } catch (e) {}
+    this.phrase = temp_phrase;
   }
 
   traverse(val, objtraverse) {
