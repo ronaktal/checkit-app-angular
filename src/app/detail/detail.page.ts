@@ -49,8 +49,14 @@ export class Detailpage {
       let no_result = temp_phrase.match(pattern_no)[0];
       temp_phrase = temp_phrase.replace(pattern_no, '');
       console.log(no_result);
-      this.question_phrase += no_result;
+      this.question_phrase += ' ' + no_result;
     } catch (e) {}
+
+    var rg = /\s[^a-z]*\:/gm;
+
+    temp_phrase = temp_phrase.replace(rg, function (match) {
+      return '<br><br>' + match + "<br>";
+    });
 
     this.phrase = temp_phrase;
   }
