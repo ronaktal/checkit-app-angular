@@ -9,9 +9,11 @@
       </ion-button>
     </ion-buttons>
     <ion-buttons slot="end"
-      ><ion-button
-        ><ion-icon name="leaf-outline"></ion-icon>&nbsp;Remedies</ion-button
-      ></ion-buttons>
+      ><ion-button (click)="Tips()" *ngIf="this.tiplist==1"
+        ><ion-icon name="leaf-outline"></ion-icon>&nbsp;Healing &
+        Tips</ion-button
+      ></ion-buttons
+    >
   </ion-toolbar> </ion-header
 ><ion-content [fullscreen]="true">
   <ion-content [fullscreen]="true">

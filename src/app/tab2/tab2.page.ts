@@ -13,6 +13,7 @@ export class Tab2Page {
 
   filterData = []; //Store filtered data
   browselist = 1;
+  tiplist = 1;
   regularList = [
     {
       name: 'Asthma Attack',
@@ -389,7 +390,19 @@ export class Tab2Page {
     this.browselist = 0;
   }
 
+  Tips() {
+    this.filterData = this.regularList;
+    this.browselist = 0;
+    this.tiplist = 0;
+  }
+
   show_topics() {
+    this.filterData = [];
+    this.browselist = 1;
+    this.tiplist = 1;
+  }
+
+  show_tips() {
     this.filterData = [];
     this.browselist = 1;
   }
