@@ -8,12 +8,13 @@ import { Router } from '@angular/router';
 })
 export class Tab2Page {
   filterTerm: string;
+  filterTerm_tip: string;
 
   constructor(private router: Router) {}
 
   filterData = []; //Store filtered data
   browselist = 1;
-  tiplist = 1;
+  tiplist = 0;
   regularList = [
     {
       name: 'Asthma Attack',
@@ -371,12 +372,69 @@ export class Tab2Page {
     },
   ];
 
+  healing_list = [
+    { name: 'COVID and Vaccine Cleanse', id: 1, source: '' },
+    { name: 'Fracture & Splinting', id: 2, source: '' },
+    { name: 'Swollen Leg', id: 3, source: '' },
+    { name: 'Infection and antibiotics', id: 4, source: '' },
+    { name: 'Soft tissue or Nerve Pain', id: 5, source: '' },
+    { name: 'Belly Pain or Nausea', id: 6, source: '' },
+    { name: 'Bladder infections', id: 7, source: '' },
+    { name: 'Tension Headache', id: 8, source: '' },
+    { name: 'Top Medicinal Plants', id: 9, source: '' },
+    { name: 'Cold or Flu', id: 10, source: '' },
+    { name: 'Airways Disease', id: 11, source: '' },
+    { name: 'Healthy Living', id: 12, source: '' },
+    { name: 'Managing Stress', id: 13, source: '' },
+    { name: 'Locate Drinking Water', id: 14, source: '' },
+    { name: 'Collecting Rainwater', id: 15, source: '' },
+    { name: 'Hydration', id: 16, source: '' },
+    { name: 'Wild Edible Plants', id: 17, source: '' },
+    { name: 'Heal Cavities Naturally', id: 18, source: '' },
+    { name: 'Heal Gallbladder Naturally', id: 19, source: '' },
+    { name: 'Heal Inflammation Naturally', id: 20, source: '' },
+    { name: 'Survival Garden', id: 21, source: '' },
+    { name: 'Growing Kitchen Scraps', id: 22, source: '' },
+    { name: 'Composting', id: 23, source: '' },
+    { name: 'Cold Hardy Plants', id: 24, source: '' },
+    { name: 'Natural Plant-based Soap', id: 25, source: '' },
+    { name: 'Making Soap at Home', id: 26, source: '' },
+    { name: 'Preserving Food', id: 27, source: '' },
+    { name: 'Fermentation', id: 28, source: '' },
+    { name: 'Constipation', id: 29, source: '' },
+    { name: 'Ear Pain', id: 30, source: '' },
+    { name: 'Outdoor Bug Repellant', id: 31, source: '' },
+    { name: 'Female Hygeine', id: 32, source: '' },
+    { name: 'Breast Swelling', id: 33, source: '' },
+    { name: 'Staying Warm', id: 34, source: '' },
+    { name: 'Burns & Stings', id: 35, source: '' },
+    { name: 'Dental Emergency', id: 36, source: '' },
+    { name: 'Herbal Mouthwash', id: 37, source: '' },
+    { name: 'Migraine', id: 38, source: '' },
+    { name: 'Heal Gallbladder Naturally', id: 39, source: '' },
+    { name: 'Heal Inflammation Naturally', id: 40, source: '' },
+    { name: 'Heal Fever Naturally', id: 41, source: '' },
+    { name: 'Heal Lungs Naturally', id: 42, source: '' },
+    { name: 'Heal Diarrhea Naturally', id: 43, source: '' },
+    { name: 'Heal Autoimmune Thyroid Disease Naturally', id: 44, source: '' },
+  ];
+
   filter(val) {
     if (val == '') {
       this.filterData = [];
       return;
     }
     this.filterData = this.regularList.filter((item) => {
+      return item.name.toLowerCase().indexOf(val.toLowerCase()) > -1;
+    });
+  }
+
+  filter_tips(val) {
+    if (val == '') {
+      this.filterData = [];
+      return;
+    }
+    this.filterData = this.healing_list.filter((item) => {
       return item.name.toLowerCase().indexOf(val.toLowerCase()) > -1;
     });
   }
@@ -388,23 +446,25 @@ export class Tab2Page {
   Browse() {
     this.filterData = this.regularList;
     this.browselist = 0;
+    this.tiplist = 0;
   }
 
   Tips() {
-    this.filterData = this.regularList;
+    this.filterData = this.healing_list;
     this.browselist = 0;
-    this.tiplist = 0;
+    this.tiplist = 1;
   }
 
   show_topics() {
     this.filterData = [];
     this.browselist = 1;
-    this.tiplist = 1;
+    this.tiplist = 0;
   }
 
   show_tips() {
     this.filterData = [];
-    this.browselist = 1;
+    this.browselist = 0;
+    this.tiplist = 1;
   }
 
   showDetail(reg) {

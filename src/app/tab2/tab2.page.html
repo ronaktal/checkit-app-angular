@@ -9,7 +9,7 @@
       </ion-button>
     </ion-buttons>
     <ion-buttons slot="end"
-      ><ion-button (click)="Tips()" *ngIf="this.tiplist==1"
+      ><ion-button (click)="Tips()" *ngIf="this.tiplist==0"
         ><ion-icon name="leaf-outline"></ion-icon>&nbsp;Healing &
         Tips</ion-button
       ></ion-buttons
@@ -22,6 +22,14 @@
       (ionInput)="filter($any($event.target).value)"
       (ionCancel)="cancel()"
       placeholder="Search Over 60 Health Topics"
+      *ngIf="this.tiplist==0"
+    ></ion-searchbar>
+    <ion-searchbar
+      [(ngModel)]="filterTerm_tip"
+      (ionInput)="filter_tips($any($event.target).value)"
+      (ionCancel)="cancel()"
+      placeholder="Search Over 40 Health & Healing Tips"
+      *ngIf="this.tiplist==1"
     ></ion-searchbar>
     <ion-list>
       <ion-item
@@ -36,7 +44,7 @@
     <br />
     <br />
     <br />
-    <div class="fab-class" *ngIf="filterData.length==0||filterData.length==63">
+    <div class="fab-class" *ngIf="this.tiplist==0&&(filterData.length==0||filterData.length==63)">
       <ion-grid>
         <ion-row>
           <ion-col> </ion-col>
