@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ToastController } from '@ionic/angular';
-
+import * as tips from './tips_all.json';
 import * as content from './content_all.json';
 
 @Component({
@@ -19,16 +19,28 @@ export class Detailpage {
   question_phrase: string;
   history: number[];
   topicid: number;
+  tipsid: number;
 
   constructor(public toastController: ToastController) {
-    var topic_id = localStorage.getItem('topic_id');
-    this.topicid = parseInt(topic_id);
-
-    this.obj = content[topic_id];
-    this.backobj = content[topic_id];
-    this.origobj = content[topic_id];
+    if (localStorage.getItem('tips_id') === null) {
+      var topic_id = localStorage.getItem('topic_id');
+      this.topicid = parseInt(topic_id);
+      this.obj = content[topic_id];
+      this.backobj = content[topic_id];
+      this.origobj = content[topic_id];
+    } else {
+      var tipsid = localStorage.getItem('tips_id');
+      this.tipsid = parseInt(tipsid);
+      this.obj = tips[tipsid];
+      this.backobj = tips[tipsid];
+      this.origobj = tips[tipsid];
+    }
     this.question_phrase = '';
-    this.updatephrase(Object.keys(this.obj)[0]);
+    if (typeof this.obj === 'object') {
+      this.updatephrase(Object.keys(this.obj)[0]);
+    } else {
+      this.updatephrase(this.obj);
+    }
     this.depth = 0;
     this.message_toast = 'No more information. Press back or start over.';
     this.history = [];
@@ -55,7 +67,7 @@ export class Detailpage {
     var rg = /\s[^a-z]*\:/gm;
 
     temp_phrase = temp_phrase.replace(rg, function (match) {
-      return '<br><br>' + match + "<br>";
+      return '<br><br>' + match + '<br>';
     });
 
     this.phrase = temp_phrase;

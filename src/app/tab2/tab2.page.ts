@@ -468,8 +468,17 @@ export class Tab2Page {
   }
 
   showDetail(reg) {
-    localStorage.setItem('topic_id', JSON.stringify(reg.id));
-    localStorage.setItem('source', JSON.stringify(reg.source));
+    localStorage.removeItem('tips_id');
+    localStorage.removeItem('topic_id');
+    localStorage.removeItem('source');
+
+    if (this.tiplist == 0) {
+      localStorage.setItem('topic_id', JSON.stringify(reg.id));
+      localStorage.setItem('source', JSON.stringify(reg.source));
+    } else {
+      localStorage.setItem('tips_id', JSON.stringify(reg.id - 1));
+      localStorage.setItem('source', JSON.stringify(reg.source));
+    }
     this.router.navigate(['/detail']);
   }
 }

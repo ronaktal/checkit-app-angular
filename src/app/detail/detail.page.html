@@ -34,7 +34,7 @@
   </ion-card>
 </ion-content>
 
-<ion-toolbar>
+<ion-toolbar *ngIf="this.tipsid===undefined">
   <ion-tabs>
     <ion-tab-bar slot="bottom">
       <ion-tab-button tab="back" (click)="back()">
