@@ -5,8 +5,13 @@
         text="Back to list"
         icon="list-outline"
         defaultHref="/"
-      ></ion-back-button>
-    </ion-buttons>
+      ></ion-back-button> </ion-buttons
+    ><ion-buttons slot="end"
+      ><ion-button (click)="show_tips()"
+        ><ion-icon name="leaf-outline"></ion-icon>&nbsp;Healing &
+        Tips</ion-button
+      ></ion-buttons
+    >
   </ion-toolbar>
 </ion-header>
 <ion-content [fullscreen]="true">
@@ -22,9 +27,13 @@
     </ion-card-header> </ion-card
   ><ion-card>
     <ion-card-header>
-      <ion-card-subtitle class="ion-text-center"
+      <ion-card-subtitle class="ion-text-center" *ngIf="this.tipsid===null"
         >Information provided in this application is taken directly from the
         source and does not replace a medical consultation.</ion-card-subtitle
+      ><ion-card-subtitle class="ion-text-center" *ngIf="this.tipsid!==null"
+        >Tip provided is for informative purposes only and does not replace a
+        medical consultation. Always consult a medical professional when
+        possible.</ion-card-subtitle
       ><br />
       <ion-card-title
         class="ion-text-center"

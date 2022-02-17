@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
 import * as tips from './tips_all.json';
 import * as content from './content_all.json';
 
@@ -21,7 +22,7 @@ export class Detailpage {
   topicid: number;
   tipsid: number;
 
-  constructor(public toastController: ToastController) {
+  constructor(public toastController: ToastController, private router: Router) {
     if (localStorage.getItem('tips_id') === null) {
       var topic_id = localStorage.getItem('topic_id');
       this.topicid = parseInt(topic_id);
@@ -199,5 +200,10 @@ export class Detailpage {
       this.setObj(this.origobj);
       this.updatephrase(Object.keys(this.backobj)[0]);
     }
+  }
+
+  show_tips() {
+    localStorage.setItem('filterTerm_tip', 'test');
+    this.router.navigate(['/tabs/tab2']);
   }
 }

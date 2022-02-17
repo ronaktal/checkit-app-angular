@@ -10,11 +10,20 @@ export class Tab2Page {
   filterTerm: string;
   filterTerm_tip: string;
 
+  ionViewWillEnter() {
+    if (localStorage.getItem('filterTerm_tip') !== null) {
+      this.filterTerm_tip = localStorage.getItem('filterTerm_tip');
+      localStorage.removeItem('filterTerm_tip');
+      this.Tips();
+    }
+    console.log('hi');
+  }
   constructor(private router: Router) {}
 
   filterData = []; //Store filtered data
   browselist = 1;
   tiplist = 0;
+
   regularList = [
     {
       name: 'Asthma Attack',
@@ -373,6 +382,7 @@ export class Tab2Page {
   ];
 
   healing_list = [
+    { name: 'Chest Pain & Aspirin', id: 0, source: '' },
     { name: 'COVID and Vaccine Cleanse', id: 1, source: '' },
     { name: 'Fracture & Splinting', id: 2, source: '' },
     { name: 'Swollen Leg', id: 3, source: '' },
@@ -476,7 +486,7 @@ export class Tab2Page {
       localStorage.setItem('topic_id', JSON.stringify(reg.id));
       localStorage.setItem('source', JSON.stringify(reg.source));
     } else {
-      localStorage.setItem('tips_id', JSON.stringify(reg.id - 1));
+      localStorage.setItem('tips_id', JSON.stringify(reg.id));
       localStorage.setItem('source', JSON.stringify(reg.source));
     }
     this.router.navigate(['/detail']);
