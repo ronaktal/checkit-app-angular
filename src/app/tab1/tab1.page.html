@@ -1,15 +1,22 @@
-
 <ion-content [fullscreen]="true">
   <ion-header [translucent]="true">
     <ion-toolbar>
-      <ion-title>
-        Video Chat
-      </ion-title>
+      <ion-title> Video Chat </ion-title>
     </ion-toolbar>
   </ion-header>
-  
-  <ion-note color="secondary">Chat with friends anywhere. Enter the phone number and click the button below and we will text them a link to video chat with you.</ion-note>
-  <ion-note color="primary">This will open a new browser window.</ion-note>
-  <ion-button expand="block">Video Call<ion-icon slot="end" name="videocam-outline"></ion-icon></ion-button>
 
+  <ion-card class="ion-text-center" *ngIf="online===true">
+    <ion-card-header>
+      <ion-card-subtitle>Internet Detected</ion-card-subtitle>
+      <ion-card-title>You are Online</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      Video call friends and family by sharing a temporary link. No signup or
+      login required.
+    </ion-card-content>
+    <ion-button
+      >Video Call<ion-icon slot="end" name="videocam-outline" (click)="open_chat()"></ion-icon
+    ></ion-button>
+  </ion-card>
 </ion-content>
