@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { SQLite, SQLiteObject } from '@awesome-cordova-plugins/sqlite/ngx';
-//will include for final producation App
 
 @Component({
   selector: 'app-tab3',
